@@ -9,7 +9,7 @@ proxies = {
 }
 url = "https://api.bilibili.com/x/web-interface/archive/stat?aid="
 file = open("list.csv",'a')
-# AV号,播放量,弹幕数,评论数,收藏数,硬币,分享,点赞"
+
 def get(urls): #,proxies=proxies
 	json = requests.get(urls,headers=headers,timeout=100).json()
 	# print(json)
@@ -23,7 +23,9 @@ def get(urls): #,proxies=proxies
 		file.write(str(data['coin'])+',')
 		file.write(str(data['share'])+',')
 		file.write(str(data['like']) + '\n')
-n = 202997
+		# AV号,播放量,弹幕数,评论数,收藏数,硬币,分享,点赞
+		
+n = 202997 # 从AV n 开始爬
 while True:
 	get(url + str(n))
 	n = n+1
