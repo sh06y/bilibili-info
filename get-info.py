@@ -11,9 +11,10 @@ url = "https://api.bilibili.com/x/web-interface/archive/stat?aid="
 file = open("list.csv",'a')
 
 def get(urls): #,proxies=proxies
+	# 异常处理，如果被封IP会自动休息
 	while True:
 		try:
-			json = requests.get(urls,headers=headers,timeout=100).json()
+			json = requests.get(urls,headers=headers,timeout=10).json()
 		except:
 			print("休息40秒")
 			time.sleep(40)
@@ -30,12 +31,13 @@ def get(urls): #,proxies=proxies
 		file.write(str(data['coin'])+',')
 		file.write(str(data['share'])+',')
 		file.write(str(data['like']) + '\n')
-		# AV号,播放量,弹幕数,评论数,收藏数,硬币,分享,点赞
-		
-n = 351852 # 从AV n 开始爬
+		# 从上到下分别为：AV号,播放量,弹幕数,评论数,收藏数,硬币,分享,点赞
+
+	
+n = 367388 # 从AV n 开始爬
 while True:
 	get(url + str(n))
 	n = n+1
 	print(n)
-	# time.sleep(random.uniform(0,0.3))
+	time.sleep(random.uniform(0,0.3))
 	
