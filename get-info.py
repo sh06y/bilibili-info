@@ -8,12 +8,12 @@ proxies = {
 	'https': '101.6.69.5:1081'
 }
 url = "https://api.bilibili.com/x/web-interface/archive/stat?aid="
-file = open("text.csv",'a')
+file = open("list.csv",'a')
 
 def get(urls): #,proxies=proxies
-	# 异常处理，如果被封IP会自动休息
-	con = 0 # 计数的
+	con = 0 # 错误计数
 	while True:
+		# 异常处理，如果被封IP会自动休息
 		try:
 			json = requests.get(urls,headers=headers,timeout=10).json()
 		except:
