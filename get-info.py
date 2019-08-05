@@ -19,6 +19,8 @@ def get(urls): #,proxies=proxies
 		except:
 			if con == 5:
 				print("连续5次都失败了。建议更换代理。")
+				con = 0 # 归零
+				time.sleep(5)
 			else:
 				print("出现了问题，可能是因为IP被限制。5秒后会重新尝试。")
 				con = con + 1
