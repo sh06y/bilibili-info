@@ -13,11 +13,16 @@ file = open("list.csv",'a')
 def get(urls): #,proxies=proxies
 	# 异常处理，如果被封IP会自动休息
 	while True:
+		con = 0 # 连续5次
 		try:
 			json = requests.get(urls,headers=headers,timeout=10).json()
 		except:
-			print("休息40秒")
-			time.sleep(40)
+			if con == 5:
+				print("连续5次都失败了。建议更换代理。")
+			else:
+				print("出现了问题，可能是因为IP被限制。5秒后会重新尝试。")
+				con = con+1
+				time.sleep(5)
 		else:
 			break
 	# print(json)
@@ -34,7 +39,7 @@ def get(urls): #,proxies=proxies
 		# 从上到下分别为：AV号,播放量,弹幕数,评论数,收藏数,硬币,分享,点赞
 
 	
-n = 367388 # 从AV n 开始爬
+n = 931386 # 从AV n 开始爬
 while True:
 	get(url + str(n))
 	n = n+1
