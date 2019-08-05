@@ -8,12 +8,12 @@ proxies = {
 	'https': '101.6.69.5:1081'
 }
 url = "https://api.bilibili.com/x/web-interface/archive/stat?aid="
-file = open("list.csv",'a')
+file = open("text.csv",'a')
 
 def get(urls): #,proxies=proxies
 	# 异常处理，如果被封IP会自动休息
+	con = 0 # 计数的
 	while True:
-		con = 0 # 连续5次
 		try:
 			json = requests.get(urls,headers=headers,timeout=10).json()
 		except:
@@ -21,7 +21,7 @@ def get(urls): #,proxies=proxies
 				print("连续5次都失败了。建议更换代理。")
 			else:
 				print("出现了问题，可能是因为IP被限制。5秒后会重新尝试。")
-				con = con+1
+				con = con + 1
 				time.sleep(5)
 		else:
 			break
@@ -39,10 +39,10 @@ def get(urls): #,proxies=proxies
 		# 从上到下分别为：AV号,播放量,弹幕数,评论数,收藏数,硬币,分享,点赞
 
 	
-n = 931386 # 从AV n 开始爬
+n = 938316 # 从AV n 开始爬
 while True:
 	get(url + str(n))
 	n = n+1
 	print(n)
-	time.sleep(random.uniform(0,0.3))
+	# time.sleep(random.uniform(0,0.3))
 	
