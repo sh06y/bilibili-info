@@ -56,18 +56,19 @@ def get(urls): #,proxies=proxies
 		file.close()
 
 # 首先获取代理ip
-pro = getp()
+# pro = getp()
 
-http_proxy =  'http://'+pro
-https_proxy = 'https://'+pro
+# http_proxy =  'http://'+pro
+# https_proxy = 'https://'+pro
 
-proxies = {
-	'http': http_proxy,
-	'https': https_proxy,
-}
+# proxies = {
+# 	'http': http_proxy,
+# 	'https': https_proxy,
+# }
 
-n = 2149426 # 从AV n 开始爬
+n = 2195177 # 从AV n 开始爬
 while True:
 	print(n)
 	get(url + str(n))
 	n = n+1
+	time.sleep(1)

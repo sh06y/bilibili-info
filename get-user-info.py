@@ -5,10 +5,9 @@ headers = {
 	"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36"
 }
 
-# 从快代理API获取代理
+# 从快代理API获取代理（因为没交钱所以已经废了）
 def getp():
 	return requests.get("http://dps.kdlapi.com/api/getdps/?orderid=976635491365392&num=1&pt=1&sep=1").text
-
 # 获取用户订阅列表
 def get_tags(user):
 	api = "https://space.bilibili.com/ajax/tags/getSubList?mid="
@@ -20,7 +19,9 @@ def get_tags(user):
 def get_info(user):
 	api = "https://api.bilibili.com/x/space/acc/info?mid="
 	url = api + str(user)
-	json = requests.get(url,headers=headers,proxies=proxies,timeout=2).json()
+	# 有代理再开这行
+	# json = requests.get(url,headers=headers,proxies=proxies,timeout=1.5).json()
+	json = requests.get(url,headers=headers,timeout=5).json()
 	# print(json)
 	return json
 
@@ -37,7 +38,7 @@ proxies = {
 # json = requests.get("https://api.bilibili.com/x/space/acc/info?mid=1",headers=headers,proxies=proxies,timeout=5).json()
 
 # 第一个mid
-n = 79987
+n = 203616
 
 while True:
 	con = 0 # 错误计数
@@ -46,8 +47,8 @@ while True:
 		try:
 			userinfo = get_info(n)
 		except:
-			if con == 3:
-				print("连续3次都失败了。正在更换代理。。。。")
+			if con == 2:
+				print("连续2次都失败了。正在更换代理。。。。")
 				pro = getp()
 
 				http_proxy =  'http://'+pro
@@ -87,4 +88,6 @@ while True:
 		file.write(str(vip['type'])+'\n')
 		file.close()
 
+	# 加了代理这行可以去掉，为的是防止被封ip
+	time.sleep(1)
 	n = n + 1
