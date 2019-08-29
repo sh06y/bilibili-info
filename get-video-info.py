@@ -41,7 +41,7 @@ def get(urls): #,proxies=proxies
 	# 如果视频存在，写入
 	if(json['code'] == 0):
 		print("yes")
-		file = open("list.csv",'a')
+		file = open("video-info.csv",'a')
 		data = json['data']
 		# 从上到下分别为：AV号,播放量,弹幕数,评论数,收藏数,硬币,分享,点赞
 		file.write(str(data['aid']) +',')

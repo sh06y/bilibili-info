@@ -67,7 +67,9 @@ while True:
 		else:
 			break
 	print(n)
+	# 写入部分
 	if(userinfo['code'] == 0):
+		# 打开文件
 		file = open("user-info.csv",'a')
 		data = userinfo['data']
 		file.write(str(data['mid']) +',')
@@ -86,6 +88,7 @@ while True:
 
 		vip = data['vip']
 		file.write(str(vip['type'])+'\n')
+		# 关闭文件
 		file.close()
 
 	# 加了代理这行可以去掉，为的是防止被封ip
