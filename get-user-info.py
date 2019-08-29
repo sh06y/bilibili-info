@@ -38,7 +38,7 @@ proxies = {
 # json = requests.get("https://api.bilibili.com/x/space/acc/info?mid=1",headers=headers,proxies=proxies,timeout=5).json()
 
 # 第一个mid
-n = 203616
+n = 341977
 
 while True:
 	con = 0 # 错误计数

@@ -66,7 +66,7 @@ def get(urls): #,proxies=proxies
 # 	'https': https_proxy,
 # }
 
-n = 2195177 # 从AV n 开始爬
+n = 2433907 # 从AV n 开始爬
 while True:
 	print(n)
 	get(url + str(n))
